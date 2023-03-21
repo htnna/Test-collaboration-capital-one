@@ -19,6 +19,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { CalendarModule } from 'primeng/calendar';
 import { CheckboxModule } from 'primeng/checkbox';
+import { SubscriptionSelectedComponent } from './subscription-selected/subscription-selected.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { CheckboxModule } from 'primeng/checkbox';
     ConfirmationDataComponent,
     SubscriptionStepsComponent,
     SubscriptionSuccessComponent,
+    SubscriptionSelectedComponent,
   ],
   imports: [
     CommonModule,

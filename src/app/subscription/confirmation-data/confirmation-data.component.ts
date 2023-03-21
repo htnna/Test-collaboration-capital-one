@@ -18,8 +18,7 @@ import { SubscriptionService } from 'src/app/shared/services/subscription.servic
 })
 export class ConfirmationDataComponent {
   confirmationForm?: FormGroup;
-  pricePerGb: number = 0;
-  totalPrice: number = 0;
+  subscriptionStepsData?: SubscriptionStepsData | null;
 
   constructor(
     private fb: FormBuilder,
@@ -28,13 +27,14 @@ export class ConfirmationDataComponent {
   ) {
     this.confirmationForm = this.fb.group({
       email: new FormControl('', [Validators.required]),
-      agreeTermAndConditions: new FormControl(true, [Validators.required]),
+      agreeTermAndConditions: new FormControl(true, [Validators.requiredTrue]),
     });
     this.subscriptionService
       .getSubscriptionStepsData()
       .pipe(first())
       .subscribe({
         next: (data: SubscriptionStepsData | null) => {
+          this.subscriptionStepsData = data;
           if (data && data.subscriptionConfirmation) {
             this.confirmationForm
               ?.get('email')
@@ -43,8 +43,6 @@ export class ConfirmationDataComponent {
               ?.get('agreeTermAndConditions')
               ?.setValue(data.subscriptionConfirmation.agreeTermAndConditions);
           }
-          this.pricePerGb = this.subscriptionService.getPricePerGb();
-          this.totalPrice = this.subscriptionService.getTotalPrice();
         },
       });
   }
@@ -56,7 +54,10 @@ export class ConfirmationDataComponent {
   save() {
     this.confirmationForm?.markAllAsTouched();
     this.confirmationForm?.updateValueAndValidity();
-    if (this.confirmationForm?.valid) {
+    if (
+      this.confirmationForm?.valid &&
+      this.confirmationForm.value.agreeTermAndConditions
+    ) {
       const subscriptionConfirmation: SubscriptionConfirmation = {
         email: this.confirmationForm.value.email,
         agreeTermAndConditions:

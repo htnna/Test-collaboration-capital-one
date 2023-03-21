@@ -18,6 +18,7 @@ import { SubscriptionService } from 'src/app/shared/services/subscription.servic
 })
 export class PaymentDataComponent {
   paymentForm?: FormGroup;
+  subscriptionStepsData?: SubscriptionStepsData | null;
 
   constructor(
     private fb: FormBuilder,
@@ -34,6 +35,7 @@ export class PaymentDataComponent {
       .pipe(first())
       .subscribe({
         next: (data: SubscriptionStepsData | null) => {
+          this.subscriptionStepsData = data;
           if (data && data.subscriptionPayment) {
             this.paymentForm
               ?.get('creditCardNumber')

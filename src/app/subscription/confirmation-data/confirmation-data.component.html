@@ -7,15 +7,11 @@
     *ngIf="confirmationForm"
   >
     <div class="field w-full flex flex-column">
-      <span class="font-bold mb-2">Summary</span>
-      <div class="flex">
-        <span class="text-color-secondary">Price per GB : </span
-        ><span>&nbsp;{{ pricePerGb }}&nbsp;USD</span>
-      </div>
-      <div class="flex">
-        <span class="text-color-secondary">Total price : </span
-        ><span>&nbsp;{{ totalPrice }}&nbsp;USD</span>
-      </div>
+      <app-subscription-selected
+        [subscriptionStepsData]="subscriptionStepsData"
+        [showPricePerGb]="true"
+        *ngIf="subscriptionStepsData"
+      ></app-subscription-selected>
     </div>
     <div class="field w-full flex flex-column">
       <label for="email">Please enter your email&nbsp;*</label>

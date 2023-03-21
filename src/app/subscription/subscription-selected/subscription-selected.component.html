@@ -1,0 +1,25 @@
+<ng-container
+  *ngIf="subscriptionStepsData && subscriptionStepsData.subscriptionParameters"
+>
+  <div class="flex flex-column">
+    <span class="mb-2 font-bold">Selected subscription</span>
+    <span
+      >Duration :
+      {{ subscriptionStepsData.subscriptionParameters.duration }}</span
+    >
+    <span
+      >Amount of gigabytes in a cloud :
+      {{ subscriptionStepsData.subscriptionParameters.gigabytesAmount }}</span
+    >
+    <span
+      >Upfront payment :
+      {{
+        subscriptionStepsData.subscriptionParameters.upfrontPayment
+          ? "yes"
+          : "no"
+      }}</span
+    >
+    <span *ngIf="showPricePerGb">Price per GB : {{ pricePerGb }} USD</span>
+    <span>Total price : {{ finalPrice }} USD</span>
+  </div>
+</ng-container>

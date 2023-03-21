@@ -68,6 +68,10 @@
         >Credit card security code is required</small
       >
     </div>
+    <app-subscription-selected
+      [subscriptionStepsData]="subscriptionStepsData"
+      *ngIf="subscriptionStepsData"
+    ></app-subscription-selected>
     <div class="w-full mt-4 flex justify-content-between">
       <button
         pButton

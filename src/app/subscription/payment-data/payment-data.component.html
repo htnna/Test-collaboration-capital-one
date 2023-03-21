@@ -1,1 +1,90 @@
-<p>payment-data works!</p>
+<div class="p-2 lg:p-4 xl:p-4">
+  <h2>Payment data</h2>
+  <form
+    [formGroup]="paymentForm"
+    #ngForm="ngForm"
+    (ngSubmit)="save()"
+    *ngIf="paymentForm"
+  >
+    <div class="field w-full flex flex-column">
+      <label for="creditCardNumber">Credit card number&nbsp;*</label>
+      <p-inputNumber
+        id="creditCardNumber"
+        inputId="integeronly"
+        formControlName="creditCardNumber"
+        aria-describedby="creditCardNumber-help"
+        styleClass="min-width-400p"
+      >
+      </p-inputNumber>
+      <small
+        id="creditCardNumber-help"
+        class="p-error block pl-2"
+        *ngIf="
+          !paymentForm.controls['creditCardNumber'].valid &&
+          paymentForm.controls['creditCardNumber'].touched
+        "
+        >Credit card number is required</small
+      >
+    </div>
+    <div class="field w-full flex flex-column">
+      <label for="creditCardExpirationDate"
+        >Credit card expiration date&nbsp;*</label
+      >
+      <p-calendar
+        id="creditCardExpirationDate"
+        formControlName="creditCardExpirationDate"
+        aria-describedby="creditCardExpirationDate-help"
+        styleClass="min-width-400p"
+      ></p-calendar>
+      <small
+        id="creditCardExpirationDate-help"
+        class="p-error block pl-2"
+        *ngIf="
+          !paymentForm.controls['creditCardExpirationDate'].valid &&
+          paymentForm.controls['creditCardExpirationDate'].touched
+        "
+        >Credit card expiration date is required</small
+      >
+    </div>
+    <div class="field w-full flex flex-column">
+      <label for="creditCardSecurityCode"
+        >Credit card security code&nbsp;*</label
+      >
+      <p-password
+        id="creditCardSecurityCode"
+        formControlName="creditCardSecurityCode"
+        aria-describedby="creditCardSecurityCode-help"
+        [feedback]="false"
+        [toggleMask]="true"
+        styleClass="min-width-400p"
+      ></p-password>
+      <small
+        id="creditCardSecurityCode-help"
+        class="p-error block pl-2"
+        *ngIf="
+          !paymentForm.controls['creditCardSecurityCode'].valid &&
+          paymentForm.controls['creditCardSecurityCode'].touched
+        "
+        >Credit card security code is required</small
+      >
+    </div>
+    <div class="w-full mt-4 flex justify-content-between">
+      <button
+        pButton
+        pRipple
+        label="Previous"
+        icon="pi pi-angle-left"
+        iconPos="left"
+        (click)="openPrevious()"
+      ></button>
+      <button
+        pButton
+        pRipple
+        label="Next"
+        type="submit"
+        icon="pi pi-angle-right"
+        iconPos="right"
+      ></button>
+    </div>
+  </form>
+</div>

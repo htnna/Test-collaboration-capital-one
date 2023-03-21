@@ -1,1 +1,71 @@
-<p>confirmation-data works!</p>
+<div class="p-2 lg:p-4 xl:p-4">
+  <h2>Confirmation of your subscription</h2>
+  <form
+    [formGroup]="confirmationForm"
+    #ngForm="ngForm"
+    (ngSubmit)="save()"
+    *ngIf="confirmationForm"
+  >
+    <div class="field w-full flex flex-column">
+      <span class="font-bold mb-2">Summary</span>
+      <div class="flex">
+        <span class="text-color-secondary">Price per GB : </span
+        ><span>&nbsp;{{ pricePerGb }}&nbsp;USD</span>
+      </div>
+      <div class="flex">
+        <span class="text-color-secondary">Total price : </span
+        ><span>&nbsp;{{ totalPrice }}&nbsp;USD</span>
+      </div>
+    </div>
+    <div class="field w-full flex flex-column">
+      <label for="email">Please enter your email&nbsp;*</label>
+      <input
+        type="text"
+        pInputText
+        id="email"
+        formControlName="email"
+        pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+        aria-describedby="email-help"
+        class="min-width-400p"
+      />
+      <small
+        id="email-help"
+        class="p-error block pl-2"
+        *ngIf="
+          !confirmationForm.controls['email'].valid &&
+          confirmationForm.controls['email'].touched
+        "
+        >A valid email is required</small
+      >
+    </div>
+    <div class="field w-full flex align-items-center">
+      <p-checkbox
+        formControlName="agreeTermAndConditions"
+        [binary]="true"
+        inputId="binary"
+        class="mr-2"
+      ></p-checkbox>
+      <label for="agreeTermAndConditions" class="m-0"
+        >I agree to the&nbsp;<a
+          pButton
+          class="p-button-link p-0"
+          type="button"
+          [routerLink]="['../../terms-and-conditions']"
+        >
+          Terms and conditions
+        </a></label
+      >
+    </div>
+    <div class="w-full mt-4 flex justify-content-between">
+      <button
+        pButton
+        pRipple
+        label="Previous"
+        icon="pi pi-angle-left"
+        iconPos="left"
+        (click)="openPrevious()"
+      ></button>
+      <button pButton pRipple label="Confirm" type="submit"></button>
+    </div>
+  </form>
+</div>

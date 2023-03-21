@@ -1,1 +1,51 @@
-<p>subscription-parameters works!</p>
+<div class="p-2 lg:p-4 xl:p-4">
+  <h2>Select subscription parameters</h2>
+  <form
+    [formGroup]="parametersForm"
+    #ngForm="ngForm"
+    (ngSubmit)="save()"
+    *ngIf="parametersForm"
+  >
+    <div class="field w-full flex flex-column">
+      <label for="duration">Duration&nbsp;*</label>
+      <div *ngFor="let d of durations" class="field-checkbox">
+        <p-radioButton
+          [inputId]="d + ''"
+          name="duration"
+          [value]="d"
+          formControlName="duration"
+        ></p-radioButton>
+        <label [for]="d">{{ d }}</label>
+      </div>
+    </div>
+    <div class="field w-full flex flex-column">
+      <label for="gigabytesAmount">Amount of gigabytes in a cloud&nbsp;*</label>
+      <div *ngFor="let a of gbAmounts" class="field-checkbox">
+        <p-radioButton
+          [inputId]="a + ''"
+          name="gigabytesAmount"
+          [value]="a"
+          formControlName="gigabytesAmount"
+        ></p-radioButton>
+        <label [for]="a">{{ a }}</label>
+      </div>
+    </div>
+    <div class="field w-full flex align-items-center">
+      <label for="upfrontPayment" class="mr-2">Upfront payment&nbsp;*</label>
+      <p-inputSwitch
+        id="upfrontPayment"
+        formControlName="upfrontPayment"
+      ></p-inputSwitch>
+    </div>
+    <div class="w-full mt-4 flex justify-content-end flex-1">
+      <button
+        pButton
+        pRipple
+        label="Next"
+        type="submit"
+        icon="pi pi-angle-right"
+        iconPos="right"
+      ></button>
+    </div>
+  </form>
+</div>

@@ -3,12 +3,9 @@
     <h1>Subscription order</h1>
   </div>
   <div class="mt-4">
-    <p-steps
-      [model]="items"
-      [readonly]="true"
-      class="mb-3"
-      *ngIf="items"
-    ></p-steps>
-    <router-outlet></router-outlet>
+    <p-steps [model]="items" [readonly]="true" *ngIf="items"></p-steps>
+    <div class="mt-4">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>

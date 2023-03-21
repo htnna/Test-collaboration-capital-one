@@ -4,17 +4,23 @@ import { ConfirmationDataComponent } from './confirmation-data/confirmation-data
 import { PaymentDataComponent } from './payment-data/payment-data.component';
 import { SubscriptionParametersComponent } from './subscription-parameters/subscription-parameters.component';
 import { SubscriptionStepsComponent } from './subscription-steps/subscription-steps.component';
+import { SubscriptionSuccessComponent } from './subscription-success/subscription-success.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/subscription',
+    redirectTo: '/subscription/subscription-parameters',
     pathMatch: 'full',
   },
   {
     path: 'subscription',
     component: SubscriptionStepsComponent,
     children: [
+      {
+        path: '',
+        redirectTo: '/subscription/subscription-parameters',
+        pathMatch: 'full',
+      },
       {
         path: 'subscription-parameters',
         component: SubscriptionParametersComponent,
@@ -28,6 +34,10 @@ const routes: Routes = [
         component: ConfirmationDataComponent,
       },
     ],
+  },
+  {
+    path: 'subscription-success',
+    component: SubscriptionSuccessComponent,
   },
 ];
 

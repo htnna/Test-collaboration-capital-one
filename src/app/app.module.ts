@@ -5,9 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { SubscriptionModule } from './subscription/subscription.module';
+import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, TermsAndConditionsComponent],
   imports: [BrowserModule, AppRoutingModule, SubscriptionModule],
   providers: [],
   bootstrap: [AppComponent],

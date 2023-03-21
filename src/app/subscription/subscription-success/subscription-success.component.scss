@@ -1,0 +1,13 @@
+.container {
+  height: calc(100vh - 100px);
+}
+
+.message-container {
+  width: 600px !important;
+}
+
+@media screen and (max-width: 767px) {
+  .message-container {
+    width: 250px !important;
+  }
+}
